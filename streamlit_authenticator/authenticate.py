@@ -5,10 +5,10 @@ from typing import Optional
 from datetime import datetime, timedelta
 import extra_streamlit_components as stx
 
-from .hasher import Hasher
-from .validator import Validator
-from .utils import generate_random_pw
-from .exceptions import CredentialsError, DeprecationError, ForgotError, LoginError, RegisterError, ResetError, UpdateError
+from hasher import Hasher
+from validator import Validator
+from utils import generate_random_pw
+from exceptions import CredentialsError, DeprecationError, ForgotError, LoginError, RegisterError, ResetError, UpdateError
 
 class Authenticate:
     """
