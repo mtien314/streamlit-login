@@ -53,6 +53,20 @@ while  _RELEASE:
     except Exception as e:
         st.error(e)
 
+    try:
+        authenticator.login()
+    except Exception as e:
+        st.error(e)
+
+    if st.session_state["authentication_status"]:
+        authenticator.logout()
+        st.write(f'Welcome *{st.session_state["name"]}*')
+        st.title('Some content')
+    elif st.session_state["authentication_status"] is False:
+        st.error('Username/password is incorrect')
+    elif st.session_state["authentication_status"] is None:
+        st.warning('Please enter your username and password')
+
     # Creating a forgot password widget
     try:
         username_of_forgotten_password, email_of_forgotten_password, new_random_password = authenticator.forgot_password()
