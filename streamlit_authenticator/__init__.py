@@ -33,8 +33,7 @@ if _RELEASE:
         # Welcome message
         st.write(f'Welcome *{st.session_state["username"]}*')
         st.title('Home')
-        st.image('sunrise.jpg')
-
+    
         # Register button
         if st.button('Register'):
             st.session_state["register_clicked"] = True
