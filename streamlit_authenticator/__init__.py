@@ -24,8 +24,7 @@ if _RELEASE:
         # Creating a login widget
     try:
         authenticator.login()
-        st.session_state["authentication_status"] = True
-        st.session_state["username"] = config['credentials']['username']  # Assuming username is stored in credentials
+
     except Exception as e:
         st.error(e)
 
