@@ -37,13 +37,6 @@ while  _RELEASE:
         authenticator.logout()
         st.write(f'Welcome *{st.session_state["name"]}*')
         st.title('Some content')
-    # Creating a password reset widget
-    if st.session_state["authentication_status"] is True:
-        try:
-            if authenticator.reset_password(st.session_state["username"]):
-                st.success('Password modified successfully')
-        except Exception as e:
-            st.error(e)
 
 
     # Creating a new user registration widget
