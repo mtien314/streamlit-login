@@ -1,7 +1,7 @@
 import streamlit as st
 import yaml  # Make sure to have PyYAML installed
 from yaml import SafeLoader
-from your_module import Authenticate  # Import your authentication module
+from authenticate import Authenticate  # Import your authentication module
 
 _RELEASE = True
 
