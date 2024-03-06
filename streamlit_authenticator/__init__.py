@@ -68,8 +68,6 @@ if _RELEASE:
     else:
         st.error('Username/password is incorrect' if st.session_state["authentication_status"] is False else 'Please Enter Username/password')
 
-    if 'controllo' not in st.session_state or st.session_state['controllo'] == False:
-        captcha_control()
 
     # Saving config file
     with open('config.yaml', 'w') as file:
