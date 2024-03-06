@@ -59,27 +59,8 @@ while  _RELEASE:
         st.error(e)
 
 
-    # Creating a forgot password widget
-    try:
-        username_of_forgotten_password, email_of_forgotten_password, new_random_password = authenticator.forgot_password()
-        if username_of_forgotten_password:
-            st.success('New password sent securely')
-            # Random password to be transferred to the user securely
-        elif username_of_forgotten_password == False:
-            st.error('Username not found')
-    except Exception as e:
-        st.error(e)
 
-    # Creating a forgot username widget
-    try:
-        username_of_forgotten_username, email_of_forgotten_username = authenticator.forgot_username()
-        if username_of_forgotten_username:
-            st.success('Username sent securely')
-            # Username to be transferred to the user securely
-        elif username_of_forgotten_username == False:
-            st.error('Email not found')
-    except Exception as e:
-        st.error(e)
+ 
 
     # Creating an update user details widget
     if st.session_state["authentication_status"]:
