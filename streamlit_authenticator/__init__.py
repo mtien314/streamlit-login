@@ -20,14 +20,14 @@ if _RELEASE:
     )
 
     # Check if the user is logged in
-    if not st.session_state.get("authentication_status"):
+    #if not st.session_state.get("authentication_status"):
         # Creating a login widget
-        try:
-            authenticator.login()
-            st.session_state["authentication_status"] = True
-            st.session_state["username"] = config['credentials']['username']  # Assuming username is stored in credentials
-        except Exception as e:
-            st.error(e)
+    try:
+        authenticator.login()
+        st.session_state["authentication_status"] = True
+        st.session_state["username"] = config['credentials']['username']  # Assuming username is stored in credentials
+    except Exception as e:
+        st.error(e)
 
     if st.session_state.get("authentication_status"):
         # Welcome message
