@@ -53,14 +53,6 @@ while  _RELEASE:
     except Exception as e:
         st.error(e)
 
-    try:
-        authenticator.login()
-    except Exception as e:
-        st.error(e)
-
-
-
- 
 
     # Creating an update user details widget
     if st.session_state["authentication_status"]:
