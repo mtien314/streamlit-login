@@ -54,15 +54,7 @@ while  _RELEASE:
     except Exception as e:
         st.error(e)
 
-'''
-    # Creating an update user details widget
-    if st.session_state["authentication_status"]:
-        try:
-            if authenticator.update_user_details(st.session_state["username"]):
-                st.success('Entries updated successfully')
-        except Exception as e:
-            st.error(e)
-'''
+
     # Saving config file
     with open('config.yaml', 'w') as file:
         yaml.dump(config, file, default_flow_style=False)
