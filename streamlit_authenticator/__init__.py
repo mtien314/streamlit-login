@@ -28,16 +28,16 @@ if _RELEASE:
     except Exception as e:
         st.error(e)
 
-    if st.session_state["authentication_status"] is True:
+    if st.session_state.get("authentication_status") is True:
         # Welcome message
         
         st.write(f'Welcome *{st.session_state["name"]}*')
         st.title('Home')
         authenticator.logout()
         
-    elif st.session_state["authentication_status"] is False:
+    elif st.session_state.get("authentication_status") is False:
         st.error("error")
-    elif st.session_state["authentication_status"] is None:
+    elif st.session_state.get("authentication_status") is None:
         st.warning('Please Enter Username/password')
         # Register button
         result = st.button('Register')
