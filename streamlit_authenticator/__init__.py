@@ -50,6 +50,7 @@ if _RELEASE:
             if email_of_registered_user:
                 st.success('User registered successfully')
                 config['credentials']['username'] = username_of_registered_user
+                config['cookie']['name'] = name_of_registered_user 
                     # Save the new username to the config file
                 st.session_state["authentication_status"] = True  # Set authentication status after successful registration
                 with open('config.yaml', 'w') as file:
