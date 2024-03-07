@@ -4,7 +4,7 @@ from yaml import SafeLoader
 from authenticate import Authenticate  # Import your authentication module
 
 _RELEASE = True
-
+result = ""
 if _RELEASE:
     # Loading config file
     with open('config.yaml') as file:
@@ -31,7 +31,7 @@ if _RELEASE:
     if st.session_state.get("authentication_status",True):
         # Welcome message
         authenticator.logout()
-        st.write(f'Welcome *{st.session_state["username"]}*')
+        st.write(f'Welcome *{st.session_state["name"]}*')
         st.title('Home')
         
     elif st.session_state["authentication_status"] is False:
@@ -39,7 +39,8 @@ if _RELEASE:
     elif st.session_state["authentication_status"] is None:
         st.warning('Please Enter Username/password')
         # Register button
-    if st.button('Register'):
+        result = st.button('Register')
+    if result:
         st.session_state["register_clicked"] = True
 
     if st.session_state.get("register_clicked", False):
