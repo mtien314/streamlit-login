@@ -5,20 +5,6 @@ from authenticate import Authenticate  # Import your authentication module
 
 _RELEASE = True
 result = ""
-
-def update_credentials(email_of_registered_user, username_of_registered_user, name_of_registered_user):
-    # Load the existing config file
-    with open('config.yaml', 'r') as file:
-        config = yaml.safe_load(file)
-
-    # Update the username and password
-    config['credentials']['email'] = email_of_registered_user
-    config['credentials']['username'] = username_of_registered_user
-    config['credentials']['name'] = name_of_registered_user
-
-    # Save the updated config file
-    with open('config.yaml', 'w') as file:
-        yaml.dump(config, file, default_flow_style=False)
         
 if _RELEASE:
     # Loading config file
@@ -34,7 +20,7 @@ if _RELEASE:
         config['preauthorized']
     )
     
-    st.session_state["register_clicked"] =False
+    
 
     # Check if the user is logged in
     #if not st.session_state.get("authentication_status"):
@@ -61,17 +47,21 @@ if _RELEASE:
     if result:
         st.session_state["register_clicked"] = True
 
-    if st.session_state.get("register_clicked", True):
+    if st.session_state.get("register_clicked", False):
         try:
             email_of_registered_user, username_of_registered_user, name_of_registered_user = authenticator.register_user(
                 preauthorization=False)
             if email_of_registered_user:
                 st.success('User registered successfully')
-                #config['credentials']['username'] = username_of_registered_user
-                #st.session_state["name"] = name_of_registered_user
-                    # Save the new username to the config file
+                config['credentials']['username'] = username_of_registered_user
+                st.session_state["name"] = name_of_registered_user
+
+                # Save the new username to the config file
+                with open('config.yaml', 'w') as file:
+                    yaml.dump(config, file, default_flow_style=False)
+
                 #st.session_state["authentication_status"] = True  # Set authentication status after successful registration
-                update_credentials(email_of_registered_user, username_of_registered_user, name_of_registered_user)
+                
         except Exception as e:
             st.error(e)
 
