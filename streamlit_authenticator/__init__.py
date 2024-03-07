@@ -5,6 +5,7 @@ from authenticate import Authenticate  # Import your authentication module
 
 _RELEASE = True
 result = ""
+
 if _RELEASE:
     # Loading config file
     with open('config.yaml') as file:
@@ -18,6 +19,8 @@ if _RELEASE:
         config['cookie']['expiry_days'],
         config['preauthorized']
     )
+    
+    st.session_state["register_clicked"] =False
 
     # Check if the user is logged in
     #if not st.session_state.get("authentication_status"):
@@ -44,7 +47,7 @@ if _RELEASE:
     if result:
         st.session_state["register_clicked"] = True
 
-    if st.session_state.get("register_clicked", False):
+    if st.session_state.get("register_clicked", True):
         try:
             email_of_registered_user, username_of_registered_user, name_of_registered_user = authenticator.register_user(
                 preauthorization=False)
