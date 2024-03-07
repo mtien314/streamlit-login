@@ -37,19 +37,19 @@ if _RELEASE:
     if st.button('Register'):
         st.session_state["register_clicked"] = True
 
-    if st.session_state.get("register_clicked", False):
-        try:
-            email_of_registered_user, username_of_registered_user, name_of_registered_user = authenticator.register_user(
+        if st.session_state.get("register_clicked", False):
+            try:
+                email_of_registered_user, username_of_registered_user, name_of_registered_user = authenticator.register_user(
                     preauthorization=False)
-            if email_of_registered_user:
-                st.success('User registered successfully')
-                config['credentials']['username'] = username_of_registered_user
+                if email_of_registered_user:
+                    st.success('User registered successfully')
+                    config['credentials']['username'] = username_of_registered_user
                     # Save the new username to the config file
-                st.session_state["authentication_status"] = True  # Set authentication status after successful registration
-                with open('config.yaml', 'w') as file:
-                    yaml.dump(config, file, default_flow_style=False)
-        except Exception as e:
-            st.error(e)
+                    st.session_state["authentication_status"] = True  # Set authentication status after successful registration
+                    with open('config.yaml', 'w') as file:
+                        yaml.dump(config, file, default_flow_style=False)
+            except Exception as e:
+                st.error(e)
 
         # Password reset widget
 
