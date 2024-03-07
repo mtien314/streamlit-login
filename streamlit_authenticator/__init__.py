@@ -30,9 +30,10 @@ if _RELEASE:
 
     if st.session_state["authentication_status"] is True:
         # Welcome message
-        authenticator.logout()
+        
         st.write(f'Welcome *{st.session_state["name"]}*')
         st.title('Home')
+        authenticator.logout()
         
     elif st.session_state["authentication_status"] is False:
         st.error("error")
