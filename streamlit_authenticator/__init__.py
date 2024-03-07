@@ -28,7 +28,7 @@ if _RELEASE:
     except Exception as e:
         st.error(e)
 
-    if st.session_state.get("authentication_status"):
+    if st.session_state.get("authentication_status",True):
         # Welcome message
         st.write(f'Welcome *{st.session_state["username"]}*')
         st.title('Home')
