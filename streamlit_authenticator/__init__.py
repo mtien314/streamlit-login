@@ -30,11 +30,12 @@ if _RELEASE:
 
     if st.session_state.get("authentication_status",True):
         # Welcome message
+        authenticator.logout()
         st.write(f'Welcome *{st.session_state["username"]}*')
         st.title('Home')
-        authenticator.logout()
+        
     elif st.session_state["authentication_status"] is False:
-        st.write("error")
+        st.error("error")
     elif st.session_state["authentication_status"] is None:
         st.warning('Please Enter Username/password')
         # Register button
