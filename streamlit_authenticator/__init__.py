@@ -6,6 +6,20 @@ from authenticate import Authenticate  # Import your authentication module
 _RELEASE = True
 result = ""
 
+def update_credentials(email_of_registered_user, username_of_registered_user, name_of_registered_user):
+    # Load the existing config file
+    with open('config.yaml', 'r') as file:
+        config = yaml.safe_load(file)
+
+    # Update the username and password
+    config['credentials']['email'] = email_of_registered_user
+    config['credentials']['username'] = username_of_registered_user
+    config['credentials']['name'] = name_of_registered_user
+
+    # Save the updated config file
+    with open('config.yaml', 'w') as file:
+        yaml.dump(config, file, default_flow_style=False)
+        
 if _RELEASE:
     # Loading config file
     with open('config.yaml') as file:
@@ -53,18 +67,15 @@ if _RELEASE:
                 preauthorization=False)
             if email_of_registered_user:
                 st.success('User registered successfully')
-                config['credentials']['username'] = username_of_registered_user
-                st.session_state["name"] = name_of_registered_user
+                #config['credentials']['username'] = username_of_registered_user
+                #st.session_state["name"] = name_of_registered_user
                     # Save the new username to the config file
-                st.session_state["authentication_status"] = True  # Set authentication status after successful registration
-                with open('config.yaml', 'w') as file:
-                    yaml.dump(config, file, default_flow_style=False)
+                #st.session_state["authentication_status"] = True  # Set authentication status after successful registration
+                update_credentials(email_of_registered_user, username_of_registered_user, name_of_registered_user)
         except Exception as e:
             st.error(e)
 
         # Password reset widget
-
-
 
     # Saving config file
     with open('config.yaml', 'w') as file:
